@@ -5,6 +5,7 @@
 
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <sys/time.h>
 #include <pthread.h>
@@ -21,8 +22,8 @@ int mat [ROW][COL2]; // the matrix resut : mat = mat1 * mat2
 
 
 
-void *  multiplication(int k){
-
+void *  multiplication(void *th){
+	long k = (long) th ;
 	int remainder = k % NUM_COL;
 	int quotient = k / NUM_COL;
 	
@@ -80,7 +81,7 @@ void *  multiplication(int k){
 int main(){
 	pthread_t threads[NUM_COL * NUM_ROW]; 
    	int rc; 
-      	int th; 
+      	long th; 
       	double debut,fin;
       	srand(time(NULL));
 	
@@ -112,7 +113,7 @@ int main(){
 
 	for(th = 0; th < NUM_COL * NUM_ROW ; th++){ 
 		
-	      rc = pthread_create(&threads[th], NULL, multiplication, th); 	
+	      rc = pthread_create(&threads[th], NULL, multiplication, (void *)th); 	
 	      (void)pthread_join(threads[th],NULL);
 	      if (rc){ 
                     	printf("Erreur de creation de thread; code erreur = %d\n", rc); 
