@@ -13,4 +13,4 @@ Each thread calculate the sub matrix according to his id.
    gcc produitmatV2.c -pthread -Wall -o produitmatV2
  
 ### how to run the program
-   gcc produitmatV2.c -pthread -Wall -o produitmatV2
+   ./produitmatV2
