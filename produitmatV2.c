@@ -78,7 +78,7 @@ void *  multiplication(int k){
 
 
 int main(){
-	pthread_t threads[ROW]; 
+	pthread_t threads[NUM_COL * NUM_ROW]; 
    	int rc; 
       	int th; 
       	double debut,fin;
